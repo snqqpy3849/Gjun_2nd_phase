@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="BIG5">
+		<title>Insert title here</title>
+		
+		<!-- 以下為兩種引入 jQuery 的方法
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		 -->
+		<script src="js/jquery3.5.1.js"></script>
+		
+	</head>
+	<!-- 
+		<body onload="test()"> 
+		
+		相當於
+		
+		<script>
+			window.onload = function(){}
+		</script>
+		
+	 -->
+	<body>
+		<div id="div1">jQuery toggle</div><p>
+		<a href="#" onclick="toggle()">click-1</a><p>
+		<a href="#" id="jq">click-2</a><p>
+		<a href="#" id="jq2">click-3</a>
+		<script type="text/javascript">
+			function toggle(){
+				var d = document.getElementById("div1");
+				if(d.style.visibility == "hidden"){
+					d.style.visibility = "visible";
+				}else{
+					d.style.visibility = "hidden"
+				}
+			}
+			$('#jq').click(function(event){
+				$('#div1').toggle();
+			});
+		</script>
+		<script type="text/javascript">
+			// 網頁準備好就可以執行程式
+			$(document).ready(start());
+			function start(){
+				alert("jQuery Ready");
+			}
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#jq2').click(function(){
+					$('#div1').slideToggle();
+				});
+			});
+		</script>
+	</body>
+</html>

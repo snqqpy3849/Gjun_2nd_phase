@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>UI  style class</title>
+	</head>
+	<body style="background-color:pink">
+		<script src="js/jquery3.5.1.js"></script>
+		<style>
+		      .big{ font-size:36px}
+		      .mid{ font-size:24px}
+		      .small{ font-size:18px}
+		</style>
+		<div style="color:blue"  class="big">Hello</div>
+		<div style="color:red"  class="mid">Hello</div>
+		<div style="color:green"  class="small">Hello</div>
+		<div style="background-color:black;color:yellow" id="switchClass">Hello Color Test</div>
+		<img src="" width="400" height="300" />
+		<button onclick="load()">Load</button>
+		<script>
+		  $(document).ready(function(){
+			  
+			  // 將這個標籤及內容添加到 body 裡面
+			  $("<div id='box'>Hello jQuery</div>").appendTo("body") ;
+			  
+			  // 可以為這個標籤添加 "class" 屬性
+			  $("#box").addClass("mid") ;
+			  
+			  // 可以切換屬性
+			  $('#switchClass').click(function(){
+				  $('#switchClass').toggleClass("big");
+			  });
+			  
+			  // 將 .big 用提示窗弄出 html 來
+			  alert($('.big').html());
+		  });
+		  
+		  function load(){
+			  $(img)
+		  }
+		
+		</script>
+	</body>
+</html>
