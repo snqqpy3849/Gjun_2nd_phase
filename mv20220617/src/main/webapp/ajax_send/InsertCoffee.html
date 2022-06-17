@@ -12,11 +12,16 @@
 		供應商:<input type="text" id="supplier" value="150"/><br/>
 		價格:<input type="text" id="price" value="300"/><br/>
 		<button onclick="send()">send</button>
+		<button onclick="update()">update</button>
 		<button onclick="query()">query</button>
 		<div id="display">Return Result</div>
 		<script>
 			function result(data,status){
 				$('#display').html(data);
+			}
+			function update(){
+				alert("test");
+				alert("test again");
 			}
 			function query(){
 				// here → CoffeeListMapServlet → viewCoffee.jsp → here
