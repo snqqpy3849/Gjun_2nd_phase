@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="BIG5">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<form action="../InsertCoffeeServlet" method="post">
+			<!-- cof_name 為 PK，所以要注意不能為空值 -->
+			咖啡名稱:<input type="text" name="coffee" value="Extra Espresso"/><br/>
+			售價:<input type="text" name="sale" value="200"/><br/>
+			總量:<input type="text" name="total" value="10"/><br/>
+			
+			<!-- 供應商為 FK，所以要注意資料要能對應到相關的欄位，不然會新增失敗 -->
+			供應商:<input type="text" name="supplier" value="150"/><br/>
+			價格:<input type="text" name="price" value="300"/><br/>
+			<input type="submit" value="Send"/>
+		</form>
+		
+	</body>
+</html>

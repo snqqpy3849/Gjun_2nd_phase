@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="BIG5">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		咖啡名稱:<input type="text" id="coffee" value="Espresso"/><br/>
+		售價:<input type="text" id="sales" value="200"/><br/>
+		總量:<input type="text" id="total" value="10"/><br/>
+		<button onclick="update()">update</button>
+     	<form action="../UpdateCoffeeServletJSON2" method="post"  onsubmit="return prepare()">
+            <input type="hidden" name="jsCoffee"  id="jsCoffee" />
+            <input type="submit" value="Send"/>
+        </form>
+		<script>
+			var data = [];
+			function update(){
+				var obj=new Object();
+				obj.cofName=document.getElementById("coffee").value;
+				obj.sales=parseInt(document.getElementById("sales").value);
+				obj.total=parseInt(document.getElementById("total").value); 
+				data.push(obj);
+				alert("done");
+			}
+			function prepare(){
+				if(data.length != 0){
+					var st = JSON.stringify(data);
+					document.getElementById("jsCoffee").value = st;					
+					alert(st);
+					return true;
+				}else{
+					alert("no data");
+				}
+				return false;
+			}
+    
+		</script>
+	</body>
+</html>
