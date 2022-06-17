@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="BIG5">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<!-- 用 jquery(post/ajax) 將結果頁面直接在原頁面裡面呈現 -->
+		猜一個數字(1-10) <br/>
+		<input type="text" id="number" /><br/>
+		<input type="submit" id="submit" value="Guess" />
+		<div id="display"></div>
+		<script>
+			// 接收到回傳資料的處理方式
+			function result(data,status){
+				alert(status);	// 表示接收狀態
+				// 將收回來的 html 結果頁面，放到 div 中顯示
+				$('#display').html(data);
+			}
+			function send(){
+				var n = $('#number').val();
+				
+				// 用 post 傳送資料：post(目標網頁/程式 , 傳送物件 , 接收server回傳值(function))
+				// 因為 Fortune.jsp 的處理結果是送到(三個)頁面，所以這裡是將各頁面的結果收回來，再由 result 去放到 <div> 裡面
+				//$.post('Fortune.jsp',{"number":n},result);
+				
+				// 用 ajax 傳送資料，結果同 $.post
+				$.ajax('Fortune.jsp',{
+					type:'post',
+					data:{'number':n},
+					contentType:"application/x-www-form-urlencoded",	// 要送到server的資料型態
+					dataType:"html",									// 預期從server接收的資料型態
+					success:result,										// 正確時的處理方式，上面有定義 result()
+					error:function(data,status,message){				// 錯誤時的處理方式，直接定義一個 function
+						$('#display').html(message);
+					}
+				});
+			}
+			function start(){
+				$('#submit').click(send);
+			}
+			$(document).ready(start);
+		</script>
+	</body>
+</html>

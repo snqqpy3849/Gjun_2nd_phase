@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="BIG5">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body>
+		咖啡名稱:<input type="text" id="coffee" value="Extra Espresso 2"/><br/>
+		售價:<input type="text" id="sale" value="200"/><br/>
+		總量:<input type="text" id="total" value="10"/><br/>
+		供應商:<input type="text" id="supplier" value="150"/><br/>
+		價格:<input type="text" id="price" value="300"/><br/>
+		<button onclick="send()">send</button>
+		<button onclick="query()">query</button>
+		<div id="display">Return Result</div>
+		<script>
+			function result(data,status){
+				$('#display').html(data);
+			}
+			function query(){
+				// here → CoffeeListMapServlet → viewCoffee.jsp → here
+				$.get("../CoffeeListMapServlet",result);
+				
+				// $.ajax("../CoffeeListMapServlet",{
+				// 	type:"get",
+				//	success:result
+				// });
+				
+			}
+			function send() {
+				var obj=new Object();
+				obj.cofName=document.getElementById("coffee").value;
+				obj.sales=parseInt(document.getElementById("sale").value);
+				obj.total=parseInt(document.getElementById("total").value);
+				obj.supId=parseInt(document.getElementById("supplier").value);
+				obj.price=parseFloat(document.getElementById("price").value);
+				
+				var st=JSON.stringify(obj);
+
+				$.ajax('../CoffeeJsonServlet',{
+					type:'post',
+					data:st,
+					contentType:"json",
+					dataType:"html",
+					success:result,	
+					error:function(data,status,message){
+						$('#display').html(message);
+					}
+				});
+			}
+		</script>
+	</body>
+</html>
